@@ -13,6 +13,7 @@ import type {
 } from 'src/types';
 import CustomTextInput from '../component/CustomTextInput';
 import { AirbnbRating } from 'react-native-ratings';
+import { useViewModel } from './useViewModel';
 
 type Props = {
   dataLoad: WriteReviewDataLoad;
@@ -21,6 +22,16 @@ type Props = {
 };
 
 const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
+  const {
+    handleFormSubmit,
+    handleRatingChange,
+    handleInputChange,
+    errorMessages,
+  } = useViewModel({
+    dataIn,
+    dataLoad,
+    dataOut,
+  });
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -39,18 +50,21 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
             dataIn.ratingLabelStyle,
           ]}
         >
-          <Text style={styles.ratingLabelStyle}>YOUR RATING</Text>
+          <Text style={styles.ratingLabelStyle}>
+            {dataIn.ratingLabel || 'YOUR RATING'}
+          </Text>
           <AirbnbRating
-            // count={3}
-            defaultRating={5}
+            defaultRating={0}
             size={27}
             showRating={false}
+            onFinishRating={handleRatingChange}
           />
+          <Text style={{ color: 'red' }}>{errorMessages.rating}</Text>
         </View>
         <View>
           <CustomTextInput
             inputLabel={dataIn.textInputStyle?.firstInputLabel || 'NICKNAME'}
-            inputStyle={[dataIn.textInputStyle?.inputStyle]}
+            inputStyle={[dataIn.textInputStyle?.firstInputStyle]}
             placeholder={
               dataIn?.textInputStyle?.firstInputPlaceholder || 'Enter nickname'
             }
@@ -59,12 +73,16 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
             textAlignVertical={
               dataIn.textInputStyle?.textAlignVertical || 'center'
             }
+            onChangeText={(value: string) =>
+              handleInputChange('nickName', value)
+            }
+            error={errorMessages.nickName}
           />
           <CustomTextInput
             inputLabel={
               dataIn.textInputStyle?.secondInputLabel || 'REVIEW TITLE'
             }
-            inputStyle={[dataIn.textInputStyle?.inputStyle]}
+            inputStyle={[dataIn.textInputStyle?.secondInputStyle]}
             placeholder={
               dataIn?.textInputStyle?.secondInputPlaceholder ||
               'The summary line of your review'
@@ -74,12 +92,19 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
             textAlignVertical={
               dataIn.textInputStyle?.textAlignVertical || 'center'
             }
+            onChangeText={(value: string) =>
+              handleInputChange('reviewTitle', value)
+            }
+            error={errorMessages.reviewTitle}
           />
           <CustomTextInput
             inputLabel={
               dataIn.textInputStyle?.thirdInputLabel || 'REVIEW DESCRIPTION'
             }
-            inputStyle={[{ height: 105 }, dataIn.textInputStyle?.inputStyle]}
+            inputStyle={[
+              { height: 105 },
+              dataIn.textInputStyle?.thirdInputStyle,
+            ]}
             placeholder={
               dataIn?.textInputStyle?.thirdInputPlaceholder ||
               'Tip: Explain why you like or dislike the product and if it met your expectations.'
@@ -89,9 +114,14 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
             textAlignVertical={
               dataIn.textInputStyle?.textAlignVertical || 'top'
             }
+            onChangeText={(value: string) =>
+              handleInputChange('reviewDescription', value)
+            }
+            error={errorMessages.reviewDescription}
           />
         </View>
         <TouchableOpacity
+          onPress={handleFormSubmit}
           style={[styles.submitButtonStyle, dataIn.submitButtonStyle]}
         >
           <Text
@@ -106,7 +136,6 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
 };
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
     padding: 20,
   },
   headerText: {
@@ -128,6 +157,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     marginBottom: 7,
+    textTransform: 'uppercase',
   },
   submitButtonLabel: {
     fontSize: 14,

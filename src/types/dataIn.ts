@@ -5,12 +5,15 @@ export type WriteReviewDataIn = {
     headerText?: string;
     productTextStyle?: StyleProp<TextStyle>;
     headerTextStyle?: StyleProp<TextStyle>;
+    ratingLabel?: string
     ratingLabelStyle?: StyleProp<TextStyle>;
     submitButtonStyle?: StyleProp<ViewStyle>;
     submitButtonTextStyle?: StyleProp<TextStyle>;
 
     textInputStyle?: {
-        inputStyle?: StyleProp<ViewStyle>;
+        firstInputStyle?: StyleProp<TextStyle>;
+        secondInputStyle?: StyleProp<TextStyle>;
+        thirdInputStyle?: StyleProp<TextStyle>;
         firstInputLabel?: string;
         secondInputLabel?: string;
         thirdInputLabel?: string;
@@ -20,5 +23,12 @@ export type WriteReviewDataIn = {
         placeholderTextColor?: string;
         multiline?: boolean;
         textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top' | undefined;
+    }
+    errorMessages?: {
+        ratingErrorMessage?: string;
+        firstInputErrorMessage?: string;
+        secondInputErrorMessage?: string;
+        thirdInputErrorMessage?: string;
+
     }
 };

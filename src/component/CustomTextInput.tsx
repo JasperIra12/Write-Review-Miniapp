@@ -2,13 +2,13 @@ import React from 'react';
 import { Text, TextInput, View } from 'react-native';
 import {
   StyleProp,
-  ViewStyle,
+  TextStyle,
   StyleSheet,
   KeyboardTypeOptions,
 } from 'react-native';
 
 type Props = {
-  inputStyle?: StyleProp<ViewStyle>;
+  inputStyle?: StyleProp<TextStyle>;
   onChangeText?: (text: string) => void;
   value?: string;
   placeholder: string;
@@ -18,6 +18,7 @@ type Props = {
   inputLabel?: string;
   multiline?: boolean;
   textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top' | undefined;
+  error?: string;
 };
 
 const CustomTextInput = ({
@@ -31,6 +32,7 @@ const CustomTextInput = ({
   inputLabel,
   multiline,
   textAlignVertical,
+  error,
 }: Props) => {
   return (
     <View style={[styles.container]}>
@@ -46,6 +48,7 @@ const CustomTextInput = ({
         multiline={multiline}
         textAlignVertical={textAlignVertical}
       />
+      {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
 };
@@ -64,6 +67,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     marginTop: 10,
+  },
+  error: {
+    color: 'red',
   },
 });
 export default CustomTextInput;

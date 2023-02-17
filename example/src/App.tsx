@@ -3,18 +3,22 @@ import { WriteReviewMAPP } from 'write-review-miniapp';
 
 const App = () => {
   const data = {
+    id: 1,
     productName: 'Jordan Shoes',
-    nickName: 'Jasper',
-    reviewTitle: 'Satisfied Costumer',
-    reviewDescription:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    nickName: 'Test',
+    reviewTitle: 'Test',
+    rating: 0,
+    reviewDescription: 'Test',
   };
   return (
     <>
       <WriteReviewMAPP
-        dataIn={{}}
+        dataIn={{
+          textInputStyle: {},
+          errorMessages: {},
+        }}
         dataLoad={data}
-        dataOut={(value) => console.log(value)}
+        dataOut={(value) => console.log('dataOut: ', value)}
       />
     </>
   );
