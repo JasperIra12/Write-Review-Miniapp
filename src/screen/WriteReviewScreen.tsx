@@ -33,7 +33,7 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
     dataOut,
   });
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, dataIn.formContainerStyle]}>
       <ScrollView>
         <Text style={[styles.headerText, dataIn?.headerTextStyle]}>
           {dataIn?.headerText || 'Post Review'}
@@ -45,12 +45,9 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
           </Text>
         </View>
         <View
-          style={[
-            { alignItems: 'baseline', marginTop: 30, marginBottom: 10 },
-            dataIn.ratingLabelStyle,
-          ]}
+          style={{ alignItems: 'baseline', marginTop: 30, marginBottom: 10 }}
         >
-          <Text style={styles.ratingLabelStyle}>
+          <Text style={[styles.ratingLabelStyle, dataIn.ratingLabelStyle]}>
             {dataIn.ratingLabel || 'YOUR RATING'}
           </Text>
           <AirbnbRating
@@ -62,63 +59,91 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
           <Text style={{ color: 'red' }}>{errorMessages.rating}</Text>
         </View>
         <View>
-          <CustomTextInput
-            inputLabel={dataIn.textInputStyle?.firstInputLabel || 'NICKNAME'}
-            inputStyle={[dataIn.textInputStyle?.firstInputStyle]}
-            placeholder={
-              dataIn?.textInputStyle?.firstInputPlaceholder || 'Enter nickname'
-            }
-            placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
-            multiline={dataIn.textInputStyle?.multiline || false}
-            textAlignVertical={
-              dataIn.textInputStyle?.textAlignVertical || 'center'
-            }
-            onChangeText={(value: string) =>
-              handleInputChange('nickName', value)
-            }
-            error={errorMessages.nickName}
-          />
-          <CustomTextInput
-            inputLabel={
-              dataIn.textInputStyle?.secondInputLabel || 'REVIEW TITLE'
-            }
-            inputStyle={[dataIn.textInputStyle?.secondInputStyle]}
-            placeholder={
-              dataIn?.textInputStyle?.secondInputPlaceholder ||
-              'The summary line of your review'
-            }
-            placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
-            multiline={dataIn.textInputStyle?.multiline || false}
-            textAlignVertical={
-              dataIn.textInputStyle?.textAlignVertical || 'center'
-            }
-            onChangeText={(value: string) =>
-              handleInputChange('reviewTitle', value)
-            }
-            error={errorMessages.reviewTitle}
-          />
-          <CustomTextInput
-            inputLabel={
-              dataIn.textInputStyle?.thirdInputLabel || 'REVIEW DESCRIPTION'
-            }
-            inputStyle={[
-              { height: 105 },
-              dataIn.textInputStyle?.thirdInputStyle,
-            ]}
-            placeholder={
-              dataIn?.textInputStyle?.thirdInputPlaceholder ||
-              'Tip: Explain why you like or dislike the product and if it met your expectations.'
-            }
-            placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
-            multiline={dataIn.textInputStyle?.multiline || true}
-            textAlignVertical={
-              dataIn.textInputStyle?.textAlignVertical || 'top'
-            }
-            onChangeText={(value: string) =>
-              handleInputChange('reviewDescription', value)
-            }
-            error={errorMessages.reviewDescription}
-          />
+          {dataIn.textInputStyle?.firstInputIsShow === false ? (
+            <></>
+          ) : (
+            <CustomTextInput
+              inputLabel={
+                dataIn.textInputStyle?.firstInputLabelName || 'Nickname'
+              }
+              inputLabelStyle={[
+                styles.inputLabelStyle,
+                dataIn.textInputStyle?.firstInputLabelStyle,
+              ]}
+              inputStyle={[dataIn.textInputStyle?.firstInputStyle]}
+              placeholder={
+                dataIn?.textInputStyle?.firstInputPlaceholder ||
+                'Enter nickname'
+              }
+              placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
+              multiline={dataIn.textInputStyle?.multiline || false}
+              textAlignVertical={
+                dataIn.textInputStyle?.textAlignVertical || 'center'
+              }
+              onChangeText={(value: string) =>
+                handleInputChange('nickName', value)
+              }
+              error={errorMessages.nickName}
+            />
+          )}
+          {dataIn.textInputStyle?.secondInputIsShow === false ? (
+            <></>
+          ) : (
+            <CustomTextInput
+              inputLabel={
+                dataIn.textInputStyle?.secondInputLabelName || 'Review Title'
+              }
+              inputLabelStyle={[
+                styles.inputLabelStyle,
+                dataIn.textInputStyle?.secondInputLabelStyle,
+              ]}
+              inputStyle={[dataIn.textInputStyle?.secondInputStyle]}
+              placeholder={
+                dataIn?.textInputStyle?.secondInputPlaceholder ||
+                'The summary line of your review'
+              }
+              placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
+              multiline={dataIn.textInputStyle?.multiline || false}
+              textAlignVertical={
+                dataIn.textInputStyle?.textAlignVertical || 'center'
+              }
+              onChangeText={(value: string) =>
+                handleInputChange('reviewTitle', value)
+              }
+              error={errorMessages.reviewTitle}
+            />
+          )}
+          {dataIn.textInputStyle?.thirdInputIsShow === false ? (
+            <></>
+          ) : (
+            <CustomTextInput
+              inputLabel={
+                dataIn.textInputStyle?.thirdInputLabelName ||
+                'Review Description'
+              }
+              inputLabelStyle={[
+                styles.inputLabelStyle,
+                dataIn.textInputStyle?.thirdInputLabelStyle,
+              ]}
+              inputStyle={[
+                { height: 105 },
+                dataIn.textInputStyle?.thirdInputStyle,
+              ]}
+              placeholder={
+                dataIn?.textInputStyle?.thirdInputPlaceholder ||
+                'Tip: Explain why you like or dislike the product and if it met your expectations.'
+              }
+              placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
+              multiline={dataIn.textInputStyle?.multiline || true}
+              textAlignVertical={
+                dataIn.textInputStyle?.textAlignVertical || 'top'
+              }
+              onChangeText={(value: string) =>
+                handleInputChange('reviewDescription', value)
+              }
+              error={errorMessages.reviewDescription}
+            />
+          )}
         </View>
         <TouchableOpacity
           onPress={handleFormSubmit}

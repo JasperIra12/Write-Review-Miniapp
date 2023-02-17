@@ -11,18 +11,24 @@ export type WriteReviewDataIn = {
     submitButtonTextStyle?: StyleProp<TextStyle>;
 
     textInputStyle?: {
-        firstInputStyle?: StyleProp<TextStyle>;
-        secondInputStyle?: StyleProp<TextStyle>;
-        thirdInputStyle?: StyleProp<TextStyle>;
-        firstInputLabel?: string;
-        secondInputLabel?: string;
-        thirdInputLabel?: string;
+        firstInputLabelName?: string;
+        secondInputLabelName?: string;
+        thirdInputLabelName?: string;
         firstInputPlaceholder?: string;
         secondInputPlaceholder?: string;
         thirdInputPlaceholder?: string;
+        firstInputLabelStyle?: StyleProp<TextStyle>;
+        secondInputLabelStyle?: StyleProp<TextStyle>;
+        thirdInputLabelStyle?: StyleProp<TextStyle>;
+        firstInputStyle?: StyleProp<TextStyle>;
+        secondInputStyle?: StyleProp<TextStyle>;
+        thirdInputStyle?: StyleProp<TextStyle>;
         placeholderTextColor?: string;
         multiline?: boolean;
-        textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top' | undefined;
+        textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top';
+        firstInputIsShow?: boolean;
+        secondInputIsShow?: boolean;
+        thirdInputIsShow?: boolean;
     }
     errorMessages?: {
         ratingErrorMessage?: string;

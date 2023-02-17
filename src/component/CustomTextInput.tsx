@@ -10,6 +10,7 @@ import {
 type Props = {
   inputStyle?: StyleProp<TextStyle>;
   onChangeText?: (text: string) => void;
+  inputLabelStyle?: StyleProp<TextStyle>;
   value?: string;
   placeholder: string;
   placeholderTextColor?: string;

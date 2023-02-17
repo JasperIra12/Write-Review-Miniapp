@@ -5,10 +5,10 @@ const App = () => {
   const data = {
     id: 1,
     productName: 'Jordan Shoes',
-    nickName: 'Test',
-    reviewTitle: 'Test',
+    nickName: '',
+    reviewTitle: '',
     rating: 0,
-    reviewDescription: 'Test',
+    reviewDescription: '',
   };
   return (
     <>
@@ -18,7 +18,7 @@ const App = () => {
           errorMessages: {},
         }}
         dataLoad={data}
-        dataOut={(value) => console.log('dataOut: ', value)}
+        dataOut={(value) => console.log(value)}
       />
     </>
   );
