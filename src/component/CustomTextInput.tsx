@@ -25,6 +25,7 @@ type Props = {
 const CustomTextInput = ({
   inputStyle,
   onChangeText,
+  inputLabelStyle,
   value,
   placeholder,
   placeholderTextColor,
@@ -37,7 +38,7 @@ const CustomTextInput = ({
 }: Props) => {
   return (
     <View style={[styles.container]}>
-      <Text style={[styles.textInputLabel]}>{inputLabel}</Text>
+      <Text style={[styles.textInputLabel, inputLabelStyle]}>{inputLabel}</Text>
       <TextInput
         style={[styles.textInputStyle, inputStyle]}
         onChangeText={onChangeText}

@@ -37,7 +37,7 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
     }
     if (inputData.nickName.length === 0 || inputData.nickName.length > 8) {
       error.nickName =
-        dataIn?.errorMessages?.firstInputErrorMessage ||
+        dataIn?.errorMessages?.firstInputFieldErrorMessage ||
         'Nickname must be between 1 and 8 characters long';
     } else {
       error.nickName = '';
@@ -45,7 +45,7 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
 
     if (inputData.reviewTitle.length === 0) {
       error.reviewTitle =
-        dataIn?.errorMessages?.secondInputErrorMessage ||
+        dataIn?.errorMessages?.secondInputFieldErrorMessage ||
         'Review title cannot be empty';
     } else {
       error.reviewTitle = '';
@@ -53,7 +53,7 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
 
     if (inputData.reviewDescription.length === 0) {
       error.reviewDescription =
-        dataIn?.errorMessages?.thirdInputErrorMessage ||
+        dataIn?.errorMessages?.thirdInputFieldErrorMessage ||
         'Review description cannot be empty';
     } else {
       error.reviewDescription = '';

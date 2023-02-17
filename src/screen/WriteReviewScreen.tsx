@@ -39,7 +39,9 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
           {dataIn?.headerText || 'Post Review'}
         </Text>
         <View style={{ flexDirection: 'row', marginTop: 20 }}>
-          <Text style={{ fontSize: 14 }}>You are Reviewing for </Text>
+          <Text style={[{ fontSize: 14 }, dataIn.productReviewerTextStyle]}>
+            {dataIn.productReviewerText || 'You are Reviewing for'}{' '}
+          </Text>
           <Text style={[styles.productTextStyle, dataIn.productTextStyle]}>
             {dataLoad.productName}
           </Text>
@@ -47,32 +49,42 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
         <View
           style={{ alignItems: 'baseline', marginTop: 30, marginBottom: 10 }}
         >
-          <Text style={[styles.ratingLabelStyle, dataIn.ratingLabelStyle]}>
-            {dataIn.ratingLabel || 'YOUR RATING'}
+          <Text
+            style={[
+              styles.ratingLabelStyle,
+              dataIn.ratingStyle?.ratingLabelStyle,
+            ]}
+          >
+            {dataIn.ratingStyle?.ratingLabel || 'YOUR RATING'}
           </Text>
           <AirbnbRating
             defaultRating={0}
-            size={27}
-            showRating={false}
+            size={dataIn.ratingStyle?.ratingIconSize || 27}
+            selectedColor={dataIn.ratingStyle?.selectedRatingIconColor}
+            unSelectedColor={dataIn.ratingStyle?.unSelectedRatingIconColor}
+            reviews={dataIn.ratingStyle?.ratingTextValue}
+            reviewColor={dataIn.ratingStyle?.ratingTextValueColor}
+            reviewSize={dataIn.ratingStyle?.ratingTextValueSize}
+            showRating={dataIn.ratingStyle?.showRating || false}
             onFinishRating={handleRatingChange}
           />
           <Text style={{ color: 'red' }}>{errorMessages.rating}</Text>
         </View>
         <View>
-          {dataIn.textInputStyle?.firstInputIsShow === false ? (
+          {dataIn.textInputStyle?.firstInputFieldIsShow === false ? (
             <></>
           ) : (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.firstInputLabelName || 'Nickname'
+                dataIn.textInputStyle?.firstInputFieldLabelName || 'Nickname'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.firstInputLabelStyle,
+                dataIn.textInputStyle?.firstInputFieldLabelStyle,
               ]}
-              inputStyle={[dataIn.textInputStyle?.firstInputStyle]}
+              inputStyle={[dataIn.textInputStyle?.firstInputFieldStyle]}
               placeholder={
-                dataIn?.textInputStyle?.firstInputPlaceholder ||
+                dataIn?.textInputStyle?.firstInputFieldPlaceholder ||
                 'Enter nickname'
               }
               placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
@@ -86,20 +98,21 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
               error={errorMessages.nickName}
             />
           )}
-          {dataIn.textInputStyle?.secondInputIsShow === false ? (
+          {dataIn.textInputStyle?.secondInputFieldIsShow === false ? (
             <></>
           ) : (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.secondInputLabelName || 'Review Title'
+                dataIn.textInputStyle?.secondInputFieldLabelName ||
+                'Review Title'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.secondInputLabelStyle,
+                dataIn.textInputStyle?.secondInputFieldLabelStyle,
               ]}
-              inputStyle={[dataIn.textInputStyle?.secondInputStyle]}
+              inputStyle={[dataIn.textInputStyle?.secondInputFieldStyle]}
               placeholder={
-                dataIn?.textInputStyle?.secondInputPlaceholder ||
+                dataIn?.textInputStyle?.secondInputFieldPlaceholder ||
                 'The summary line of your review'
               }
               placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
@@ -113,24 +126,24 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
               error={errorMessages.reviewTitle}
             />
           )}
-          {dataIn.textInputStyle?.thirdInputIsShow === false ? (
+          {dataIn.textInputStyle?.thirdInputFieldIsShow === false ? (
             <></>
           ) : (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.thirdInputLabelName ||
+                dataIn.textInputStyle?.thirdInputFieldLabelName ||
                 'Review Description'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.thirdInputLabelStyle,
+                dataIn.textInputStyle?.thirdInputFieldLabelStyle,
               ]}
               inputStyle={[
                 { height: 105 },
-                dataIn.textInputStyle?.thirdInputStyle,
+                dataIn.textInputStyle?.thirdInputFieldStyle,
               ]}
               placeholder={
-                dataIn?.textInputStyle?.thirdInputPlaceholder ||
+                dataIn?.textInputStyle?.thirdInputFieldPlaceholder ||
                 'Tip: Explain why you like or dislike the product and if it met your expectations.'
               }
               placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
@@ -152,7 +165,7 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
           <Text
             style={[styles.submitButtonLabel, dataIn.submitButtonTextStyle]}
           >
-            Submit Review
+            {dataIn.buttonText || 'Submit Review'}
           </Text>
         </TouchableOpacity>
       </ScrollView>
