@@ -23,30 +23,30 @@ export type WriteReviewDataIn = {
         ratingTextValueSize?: number
     }
     textInputStyle?: {
-        firstInputFieldLabelName?: string;
-        secondInputFieldLabelName?: string;
-        thirdInputFieldLabelName?: string;
-        firstInputFieldPlaceholder?: string;
-        secondInputFieldPlaceholder?: string;
-        thirdInputFieldPlaceholder?: string;
-        firstInputFieldLabelStyle?: StyleProp<TextStyle>;
-        secondInputFieldLabelStyle?: StyleProp<TextStyle>;
-        thirdInputFieldLabelStyle?: StyleProp<TextStyle>;
-        firstInputFieldStyle?: StyleProp<TextStyle>;
-        secondInputFieldStyle?: StyleProp<TextStyle>;
-        thirdInputFieldStyle?: StyleProp<TextStyle>;
+        nicknameFieldStyle?: StyleProp<TextStyle>;
+        reviewTitleFieldStyle?: StyleProp<TextStyle>;
+        reviewDescriptionFieldStyle?: StyleProp<TextStyle>;
+        nicknameFieldLabel?: string;
+        reviewTitleFieldLabel?: string;
+        reviewDescriptionFieldLabel?: string;
+        nicknameFieldPlaceholder?: string;
+        reviewTitleFieldPlaceholder?: string;
+        reviewDescriptionFieldPlaceholder?: string;
+        nicknameFieldLabelStyle?: StyleProp<TextStyle>;
+        reviewTitleFieldLabelStyle?: StyleProp<TextStyle>;
+        reviewDescriptionFieldLabelStyle?: StyleProp<TextStyle>;
         placeholderTextColor?: string;
         multiline?: boolean;
         textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top';
-        firstInputFieldIsShow?: boolean;
-        secondInputFieldIsShow?: boolean;
-        thirdInputFieldIsShow?: boolean;
+        nicknameFieldIsShow?: boolean;
+        reviewTitleFieldIsShow?: boolean;
+        reviewDescriptionFieldIsShow?: boolean;
     }
     errorMessages?: {
         ratingErrorMessage?: string;
-        firstInputFieldErrorMessage?: string;
-        secondInputFieldErrorMessage?: string;
-        thirdInputFieldErrorMessage?: string;
+        nicknameFieldErrorMessage?: string;
+        reviewTitleFieldErrorMessage?: string;
+        reviewDescriptionFieldErrorMessage?: string;
 
     }
 };

@@ -71,20 +71,20 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
           <Text style={{ color: 'red' }}>{errorMessages.rating}</Text>
         </View>
         <View>
-          {dataIn.textInputStyle?.firstInputFieldIsShow === false ? (
+          {dataIn.textInputStyle?.nicknameFieldIsShow === false ? (
             <></>
           ) : (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.firstInputFieldLabelName || 'Nickname'
+                dataIn.textInputStyle?.nicknameFieldLabel || 'Nickname'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.firstInputFieldLabelStyle,
+                dataIn.textInputStyle?.nicknameFieldLabelStyle,
               ]}
-              inputStyle={[dataIn.textInputStyle?.firstInputFieldStyle]}
+              inputStyle={[dataIn.textInputStyle?.nicknameFieldStyle]}
               placeholder={
-                dataIn?.textInputStyle?.firstInputFieldPlaceholder ||
+                dataIn?.textInputStyle?.nicknameFieldPlaceholder ||
                 'Enter nickname'
               }
               placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
@@ -98,21 +98,20 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
               error={errorMessages.nickName}
             />
           )}
-          {dataIn.textInputStyle?.secondInputFieldIsShow === false ? (
+          {dataIn.textInputStyle?.reviewTitleFieldIsShow === false ? (
             <></>
           ) : (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.secondInputFieldLabelName ||
-                'Review Title'
+                dataIn.textInputStyle?.reviewTitleFieldLabel || 'Review Title'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.secondInputFieldLabelStyle,
+                dataIn.textInputStyle?.reviewTitleFieldLabelStyle,
               ]}
-              inputStyle={[dataIn.textInputStyle?.secondInputFieldStyle]}
+              inputStyle={[dataIn.textInputStyle?.reviewTitleFieldStyle]}
               placeholder={
-                dataIn?.textInputStyle?.secondInputFieldPlaceholder ||
+                dataIn?.textInputStyle?.reviewTitleFieldPlaceholder ||
                 'The summary line of your review'
               }
               placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
@@ -126,24 +125,24 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
               error={errorMessages.reviewTitle}
             />
           )}
-          {dataIn.textInputStyle?.thirdInputFieldIsShow === false ? (
+          {dataIn.textInputStyle?.reviewDescriptionFieldIsShow === false ? (
             <></>
           ) : (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.thirdInputFieldLabelName ||
+                dataIn.textInputStyle?.reviewDescriptionFieldLabel ||
                 'Review Description'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.thirdInputFieldLabelStyle,
+                dataIn.textInputStyle?.reviewDescriptionFieldLabelStyle,
               ]}
               inputStyle={[
                 { height: 105 },
-                dataIn.textInputStyle?.thirdInputFieldStyle,
+                dataIn.textInputStyle?.reviewDescriptionFieldStyle,
               ]}
               placeholder={
-                dataIn?.textInputStyle?.thirdInputFieldPlaceholder ||
+                dataIn?.textInputStyle?.reviewDescriptionFieldPlaceholder ||
                 'Tip: Explain why you like or dislike the product and if it met your expectations.'
               }
               placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
