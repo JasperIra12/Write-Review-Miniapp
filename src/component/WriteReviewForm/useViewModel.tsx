@@ -25,6 +25,33 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
     rating: '',
   });
 
+  const dataToSave = () => {
+    let dataToSave = {};
+
+    if (dataIn?.textInputStyle?.nicknameStyle?.nicknameFieldIsShow === false) {
+      dataToSave = {
+        reviewTitle: inputData.reviewTitle,
+        reviewDescription: inputData.reviewDescription,
+        rating: inputData.rating,
+      };
+    } else if (
+      dataIn?.textInputStyle?.reviewTitleStyle?.reviewTitleFieldIsShow === false
+    ) {
+      dataToSave = {
+        nickName: inputData.nickName,
+        reviewDescription: inputData.reviewDescription,
+        rating: inputData.rating,
+      };
+    } else {
+      dataToSave = {
+        nickName: inputData.nickName,
+        reviewTitle: inputData.reviewTitle,
+        rating: inputData.rating,
+      };
+    }
+    return dataToSave;
+  };
+
   const validateInputData = (inputData: any) => {
     const errors = { ...errorMessages };
 
@@ -34,19 +61,29 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
         'Please provide a rating value';
     }
 
-    if (inputData.nickName.length === 0 || inputData.nickName.length > 8) {
+    if (
+      dataIn.textInputStyle?.nicknameStyle?.nicknameFieldIsShow &&
+      (inputData.nickName.length === 0 || inputData.nickName.length > 8)
+    ) {
       errors.nickName =
         dataIn?.errorMessages?.nicknameFieldErrorMessage ||
         'Nickname must be between 1 and 8 characters long';
     }
 
-    if (inputData.reviewTitle.length === 0) {
+    if (
+      dataIn.textInputStyle?.reviewTitleStyle?.reviewTitleFieldIsShow &&
+      inputData.reviewTitle.length === 0
+    ) {
       errors.reviewTitle =
         dataIn?.errorMessages?.reviewTitleFieldErrorMessage ||
         'Review title cannot be empty';
     }
 
-    if (inputData.reviewDescription.length === 0) {
+    if (
+      dataIn.textInputStyle?.reviewDescriptionStyle
+        ?.reviewDescriptionFieldIsShow &&
+      inputData.reviewDescription.length === 0
+    ) {
       errors.reviewDescription =
         dataIn?.errorMessages?.reviewDescriptionFieldErrorMessage ||
         'Review description cannot be empty';
@@ -56,6 +93,7 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
   };
 
   const handleFormSubmit = () => {
+    const dataOnSave = dataToSave();
     const errors = validateInputData(inputData);
     setErrorMessages(errors);
 
@@ -64,7 +102,7 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
     );
 
     if (!hasErrors) {
-      dataOut({ ...dataLoad, ...inputData, type: 'Successful' });
+      dataOut({ ...dataLoad, ...dataOnSave, type: 'Successful' });
       setInputData({
         nickName: '',
         rating: 0,
@@ -101,5 +139,6 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
     handleInputChange,
     inputData,
     errorMessages,
+    dataToSave,
   };
 };
