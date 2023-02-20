@@ -1,5 +1,5 @@
 import React from 'react';
-import WriteReviewScreen from './screen/WriteReviewScreen';
+import WriteReviewScreen from './component/WriteReviewForm/WriteReviewForm';
 import type {
   WriteReviewDataIn,
   WriteReviewDataLoad,

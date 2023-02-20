@@ -11,7 +11,7 @@ import type {
   WriteReviewDataLoad,
   WriteReviewDataOut,
 } from 'src/types';
-import CustomTextInput from '../component/CustomTextInput';
+import CustomTextInput from '../CustomButton/CustomTextInput';
 import { AirbnbRating } from 'react-native-ratings';
 import { useViewModel } from './useViewModel';
 
@@ -26,6 +26,7 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
     handleFormSubmit,
     handleRatingChange,
     handleInputChange,
+    inputData,
     errorMessages,
   } = useViewModel({
     dataIn,
@@ -35,14 +36,25 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
   return (
     <View style={[styles.container, dataIn.formContainerStyle]}>
       <ScrollView>
-        <Text style={[styles.headerText, dataIn?.headerTextStyle]}>
-          {dataIn?.headerText || 'Post Review'}
+        <Text style={[styles.headerText, dataIn?.headerStyle?.headerTextStyle]}>
+          {dataIn?.headerStyle?.headerText || 'Post Review'}
         </Text>
         <View style={{ flexDirection: 'row', marginTop: 20 }}>
-          <Text style={[{ fontSize: 14 }, dataIn.productReviewerTextStyle]}>
-            {dataIn.productReviewerText || 'You are Reviewing for'}{' '}
+          <Text
+            style={[
+              { fontSize: 14 },
+              dataIn.productStyle?.productReviewerTextStyle,
+            ]}
+          >
+            {dataIn.productStyle?.productReviewerText ||
+              'You are Reviewing for'}{' '}
           </Text>
-          <Text style={[styles.productTextStyle, dataIn.productTextStyle]}>
+          <Text
+            style={[
+              styles.productTextStyle,
+              dataIn.productStyle?.productTextStyle,
+            ]}
+          >
             {dataLoad.productName}
           </Text>
         </View>
@@ -58,7 +70,7 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
             {dataIn.ratingStyle?.ratingLabel || 'YOUR RATING'}
           </Text>
           <AirbnbRating
-            defaultRating={0}
+            defaultRating={inputData.rating}
             size={dataIn.ratingStyle?.ratingIconSize || 27}
             selectedColor={dataIn.ratingStyle?.selectedRatingIconColor}
             unSelectedColor={dataIn.ratingStyle?.unSelectedRatingIconColor}
@@ -71,85 +83,108 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
           <Text style={{ color: 'red' }}>{errorMessages.rating}</Text>
         </View>
         <View>
-          {dataIn.textInputStyle?.nicknameFieldIsShow === false ? (
+          {dataIn.textInputStyle?.nicknameStyle?.nicknameFieldIsShow ===
+          false ? (
             <></>
           ) : (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.nicknameFieldLabel || 'Nickname'
+                dataIn.textInputStyle?.nicknameStyle?.inputLabel || 'Nickname'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.nicknameFieldLabelStyle,
+                dataIn.textInputStyle?.nicknameStyle?.inputLabelStyle,
               ]}
-              inputStyle={[dataIn.textInputStyle?.nicknameFieldStyle]}
+              inputStyle={[dataIn.textInputStyle?.nicknameStyle?.inputStyle]}
               placeholder={
-                dataIn?.textInputStyle?.nicknameFieldPlaceholder ||
+                dataIn?.textInputStyle?.nicknameStyle?.placeholder ||
                 'Enter nickname'
               }
-              placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
-              multiline={dataIn.textInputStyle?.multiline || false}
-              textAlignVertical={
-                dataIn.textInputStyle?.textAlignVertical || 'center'
+              placeholderTextColor={
+                dataIn.textInputStyle?.nicknameStyle?.placeholderTextColor
               }
+              multiline={
+                dataIn.textInputStyle?.nicknameStyle?.multiline || false
+              }
+              textAlignVertical={
+                dataIn.textInputStyle?.nicknameStyle?.textAlignVertical ||
+                'center'
+              }
+              value={inputData.nickName}
               onChangeText={(value: string) =>
                 handleInputChange('nickName', value)
               }
               error={errorMessages.nickName}
             />
           )}
-          {dataIn.textInputStyle?.reviewTitleFieldIsShow === false ? (
+          {dataIn.textInputStyle?.reviewTitleStyle?.reviewTitleFieldIsShow ===
+          false ? (
             <></>
           ) : (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.reviewTitleFieldLabel || 'Review Title'
+                dataIn.textInputStyle?.reviewTitleStyle?.inputLabel ||
+                'Review Title'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.reviewTitleFieldLabelStyle,
+                dataIn.textInputStyle?.reviewTitleStyle?.inputLabelStyle,
               ]}
-              inputStyle={[dataIn.textInputStyle?.reviewTitleFieldStyle]}
+              inputStyle={[dataIn.textInputStyle?.reviewTitleStyle?.inputStyle]}
               placeholder={
-                dataIn?.textInputStyle?.reviewTitleFieldPlaceholder ||
+                dataIn?.textInputStyle?.reviewTitleStyle?.placeholder ||
                 'The summary line of your review'
               }
-              placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
-              multiline={dataIn.textInputStyle?.multiline || false}
-              textAlignVertical={
-                dataIn.textInputStyle?.textAlignVertical || 'center'
+              placeholderTextColor={
+                dataIn.textInputStyle?.reviewTitleStyle?.placeholderTextColor
               }
+              multiline={
+                dataIn.textInputStyle?.reviewTitleStyle?.multiline || false
+              }
+              textAlignVertical={
+                dataIn.textInputStyle?.reviewTitleStyle?.textAlignVertical ||
+                'center'
+              }
+              value={inputData.reviewTitle}
               onChangeText={(value: string) =>
                 handleInputChange('reviewTitle', value)
               }
               error={errorMessages.reviewTitle}
             />
           )}
-          {dataIn.textInputStyle?.reviewDescriptionFieldIsShow === false ? (
+          {dataIn.textInputStyle?.reviewDescriptionStyle
+            ?.reviewDescriptionFieldIsShow === false ? (
             <></>
           ) : (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.reviewDescriptionFieldLabel ||
+                dataIn.textInputStyle?.reviewDescriptionStyle?.inputLabel ||
                 'Review Description'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.reviewDescriptionFieldLabelStyle,
+                dataIn.textInputStyle?.reviewDescriptionStyle?.inputLabelStyle,
               ]}
               inputStyle={[
                 { height: 105 },
-                dataIn.textInputStyle?.reviewDescriptionFieldStyle,
+                dataIn.textInputStyle?.reviewDescriptionStyle?.inputStyle,
               ]}
               placeholder={
-                dataIn?.textInputStyle?.reviewDescriptionFieldPlaceholder ||
+                dataIn?.textInputStyle?.reviewDescriptionStyle?.placeholder ||
                 'Tip: Explain why you like or dislike the product and if it met your expectations.'
               }
-              placeholderTextColor={dataIn.textInputStyle?.placeholderTextColor}
-              multiline={dataIn.textInputStyle?.multiline || true}
-              textAlignVertical={
-                dataIn.textInputStyle?.textAlignVertical || 'top'
+              placeholderTextColor={
+                dataIn.textInputStyle?.reviewDescriptionStyle
+                  ?.placeholderTextColor
               }
+              multiline={
+                dataIn.textInputStyle?.reviewDescriptionStyle?.multiline || true
+              }
+              textAlignVertical={
+                dataIn.textInputStyle?.reviewDescriptionStyle
+                  ?.textAlignVertical || 'top'
+              }
+              value={inputData.reviewDescription}
               onChangeText={(value: string) =>
                 handleInputChange('reviewDescription', value)
               }
@@ -159,12 +194,18 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
         </View>
         <TouchableOpacity
           onPress={handleFormSubmit}
-          style={[styles.submitButtonStyle, dataIn.submitButtonStyle]}
+          style={[
+            styles.submitButtonStyle,
+            dataIn.submitButtonStyle?.buttonStyle,
+          ]}
         >
           <Text
-            style={[styles.submitButtonLabel, dataIn.submitButtonTextStyle]}
+            style={[
+              styles.submitButtonLabel,
+              dataIn.submitButtonStyle?.submitButtonTextStyle,
+            ]}
           >
-            {dataIn.buttonText || 'Submit Review'}
+            {dataIn.submitButtonStyle?.buttonText || 'Submit Review'}
           </Text>
         </TouchableOpacity>
       </ScrollView>

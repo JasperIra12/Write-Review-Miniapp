@@ -5,17 +5,23 @@ const App = () => {
   const data = {
     id: 1,
     productName: 'Jordan Shoes',
-    nickName: '',
-    reviewTitle: '',
-    rating: 0,
-    reviewDescription: '',
+    type: '',
   };
   return (
     <>
       <WriteReviewMAPP
         dataIn={{
-          textInputStyle: {},
-          errorMessages: {},
+          textInputStyle: {
+            nicknameStyle: {},
+            reviewTitleStyle: {},
+            reviewDescriptionStyle: {},
+          },
+          errorMessages: {
+            reviewDescriptionFieldErrorMessage: 'TEST',
+          },
+          ratingStyle: {
+            // ratingTextValue: ['Terrible', 'Bad', 'Good', 'Excelent', 'Very Good'],
+          },
         }}
         dataLoad={data}
         dataOut={(value) => console.log(value)}

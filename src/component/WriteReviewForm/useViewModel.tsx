@@ -25,53 +25,57 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
     rating: '',
   });
 
-  const handleFormSubmit = () => {
-    const error = { ...errorMessages };
+  const validateInputData = (inputData: any) => {
+    const errors = { ...errorMessages };
 
     if (inputData.rating === 0) {
-      error.rating =
+      errors.rating =
         dataIn?.errorMessages?.ratingErrorMessage ||
         'Please provide a rating value';
-    } else {
-      error.rating = '';
     }
+
     if (inputData.nickName.length === 0 || inputData.nickName.length > 8) {
-      error.nickName =
+      errors.nickName =
         dataIn?.errorMessages?.nicknameFieldErrorMessage ||
         'Nickname must be between 1 and 8 characters long';
-    } else {
-      error.nickName = '';
     }
 
     if (inputData.reviewTitle.length === 0) {
-      error.reviewTitle =
+      errors.reviewTitle =
         dataIn?.errorMessages?.reviewTitleFieldErrorMessage ||
         'Review title cannot be empty';
-    } else {
-      error.reviewTitle = '';
     }
 
     if (inputData.reviewDescription.length === 0) {
-      error.reviewDescription =
+      errors.reviewDescription =
         dataIn?.errorMessages?.reviewDescriptionFieldErrorMessage ||
         'Review description cannot be empty';
-    } else {
-      error.reviewDescription = '';
     }
 
-    setErrorMessages(error);
+    return errors;
+  };
 
-    const hasErrors = Object.values(error).some(
+  const handleFormSubmit = () => {
+    const errors = validateInputData(inputData);
+    setErrorMessages(errors);
+
+    const hasErrors = Object.values(errors).some(
       (errorMessage) => errorMessage !== ''
     );
 
     if (!hasErrors) {
-      dataOut({ ...dataLoad, ...inputData });
+      dataOut({ ...dataLoad, ...inputData, type: 'Successful' });
+      setInputData({
+        nickName: '',
+        rating: 0,
+        reviewTitle: '',
+        reviewDescription: '',
+      });
     } else {
       dataOut({
-        ...error,
         id: dataLoad.id,
         productName: dataLoad.productName,
+        type: 'Error',
       });
     }
   };
@@ -95,6 +99,7 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
     handleFormSubmit,
     handleRatingChange,
     handleInputChange,
+    inputData,
     errorMessages,
   };
 };
