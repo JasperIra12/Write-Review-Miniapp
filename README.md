@@ -11,6 +11,7 @@ npm install write-review-miniapp
 ## Changelogs
 
 ```Changes per version
+v0.1.9 - changes in READMe
 v0.1.8 - changes for isShow default to true
 v0.1.7 - changes in dataIn and dataOut for validation
 v0.1.6 - changes in dataIn Props
@@ -67,42 +68,42 @@ v0.1.0 - miniapp first publish
 
 ## nicknameStyle DataIn Props
 
-| Prop                       | Required | Type         | Description                                                                |
-| :------------------------- | :------- | :----------- | :------------------------------------------------------------------------- | -------- | ------ | --------------------------------------------------------------------------- |
-| **`inputStyle`**           | No       | `Text Style` | Text style for nickname input field                                        |
-| **`inputLabel`**           | No       | `string`     | text for the nickname label                                                |
-| **`inputLabelStyle`**      | No       | `Text Style` | Text Style for the nickname label text                                     |
-| **`placeholder`**          | No       | `string`     | text that displayed if value is empty                                      |
-| **`placeholderTextColor`** | No       | `string`     | color for placeholder text                                                 |
-| **` isShow`**              | No       | `boolean`    | default is true, it can sset to false if nickname field is not needed      |
-| **`multiline`**            | No       | `boolean`    | If true, the text input can be multiple lines. The default value is false. |
-| **`textAlignVertical`**    | No       | `'center'    | 'auto'                                                                     | 'bottom' | 'top'` | Align the input text to the center, bottom, or top sides of the input field |
+| Prop                       | Required | Type                                                                                                                        | Description                                                                 |
+| :------------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| **`inputStyle`**           | No       | `Text Style`                                                                                                                | Text style for nickname input field                                         |
+| **`inputLabel`**           | No       | `string`                                                                                                                    | text for the nickname label                                                 |
+| **`inputLabelStyle`**      | No       | `Text Style`                                                                                                                | Text Style for the nickname label text                                      |
+| **`placeholder`**          | No       | `string`                                                                                                                    | text that displayed if value is empty                                       |
+| **`placeholderTextColor`** | No       | `string`                                                                                                                    | color for placeholder text                                                  |
+| **` isShow`**              | No       | `boolean`                                                                                                                   | default is true, it can sset to false if nickname field is not needed       |
+| **`multiline`**            | No       | `boolean`                                                                                                                   | If true, the text input can be multiple lines. The default value is false.  |
+| **`textAlignVertical`**    | No       | `'center'  or 'auto'                                                                                  or 'bottom' or 'top'` | Align the input text to the center, bottom, or top sides of the input field |
 
 ## reviewTitleStyle DataIn Props
 
-| Prop                       | Required | Type         | Description                                                                |
-| :------------------------- | :------- | :----------- | :------------------------------------------------------------------------- | -------- | ------ | --------------------------------------------------------------------------- |
-| **`inputStyle`**           | No       | `Text Style` | Text style for review title input field                                    |
-| **`inputLabel`**           | No       | `string`     | text for the review title label                                            |
-| **`inputLabelStyle`**      | No       | `Text Style` | Text Style for the review title label text                                 |
-| **`placeholder`**          | No       | `string`     | text that displayed if value is empty                                      |
-| **`placeholderTextColor`** | No       | `string`     | color for placeholder text                                                 |
-| **` isShow`**              | No       | `boolean`    | default is true, it can sset to false if review title field is not needed  |
-| **`multiline`**            | No       | `boolean`    | If true, the text input can be multiple lines. The default value is false. |
-| **`textAlignVertical`**    | No       | `'center'    | 'auto'                                                                     | 'bottom' | 'top'` | Align the input text to the center, bottom, or top sides of the input field |
+| Prop                       | Required | Type                                                                                                                        | Description                                                                 |
+| :------------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| **`inputStyle`**           | No       | `Text Style`                                                                                                                | Text style for review title input field                                     |
+| **`inputLabel`**           | No       | `string`                                                                                                                    | text for the review title label                                             |
+| **`inputLabelStyle`**      | No       | `Text Style`                                                                                                                | Text Style for the review title label text                                  |
+| **`placeholder`**          | No       | `string`                                                                                                                    | text that displayed if value is empty                                       |
+| **`placeholderTextColor`** | No       | `string`                                                                                                                    | color for placeholder text                                                  |
+| **` isShow`**              | No       | `boolean`                                                                                                                   | default is true, it can sset to false if review title field is not needed   |
+| **`multiline`**            | No       | `boolean`                                                                                                                   | If true, the text input can be multiple lines. The default value is false.  |
+| **`textAlignVertical`**    | No       | `'center'  or 'auto'                                                                                  or 'bottom' or 'top'` | Align the input text to the center, bottom, or top sides of the input field |
 
 ## reviewDescriptionStyle DataIn Props
 
-| Prop                       | Required | Type         | Description                                                                             |
-| :------------------------- | :------- | :----------- | :-------------------------------------------------------------------------------------- | -------- | ------ | --------------------------------------------------------------------------- |
-| **`inputStyle`**           | No       | `Text Style` | Text style for review description input field                                           |
-| **`inputLabel`**           | No       | `string`     | text for the review description label                                                   |
-| **`inputLabelStyle`**      | No       | `Text Style` | Text Style for the review description label text                                        |
-| **`placeholder`**          | No       | `string`     | text that displayed if value is empty                                                   |
-| **`placeholderTextColor`** | No       | `string`     | color for placeholder text                                                              |
-| **` isShow`**              | No       | `boolean`    | default is true, it can sset to false if review description field is not needed         |
-| **`multiline`**            | No       | `boolean`    | If true, the text input can be multiple lines. The default value on this field is true. |
-| **`textAlignVertical`**    | No       | `'center'    | 'auto'                                                                                  | 'bottom' | 'top'` | Align the input text to the center, bottom, or top sides of the input field |
+| Prop                       | Required | Type                                                                                                                        | Description                                                                             |
+| :------------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------- |
+| **`inputStyle`**           | No       | `Text Style`                                                                                                                | Text style for review description input field                                           |
+| **`inputLabel`**           | No       | `string`                                                                                                                    | text for the review description label                                                   |
+| **`inputLabelStyle`**      | No       | `Text Style`                                                                                                                | Text Style for the review description label text                                        |
+| **`placeholder`**          | No       | `string`                                                                                                                    | text that displayed if value is empty                                                   |
+| **`placeholderTextColor`** | No       | `string`                                                                                                                    | color for placeholder text                                                              |
+| **` isShow`**              | No       | `boolean`                                                                                                                   | default is true, it can sset to false if review description field is not needed         |
+| **`multiline`**            | No       | `boolean`                                                                                                                   | If true, the text input can be multiple lines. The default value on this field is true. |
+| **`textAlignVertical`**    | No       | `'center'  or 'auto'                                                                                  or 'bottom' or 'top'` | Align the input text to the center, bottom, or top sides of the input field             |
 
 ## errorMessages DataIn Props
 
