@@ -11,7 +11,8 @@ npm install write-review-miniapp
 ## Changelogs
 
 ```Changes per version
-v0.1.7 -
+v0.1.8 - changes for isShow default to true
+v0.1.7 - changes in dataIn and dataOut for validation
 v0.1.6 - changes in dataIn Props
 v0.1.5 - changes in dataLoad and dataIn Props
 v0.1.4 - changes in dataOut
