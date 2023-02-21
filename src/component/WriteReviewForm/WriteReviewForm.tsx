@@ -33,6 +33,7 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
     dataLoad,
     dataOut,
   });
+
   return (
     <View style={[styles.container, dataIn.formContainerStyle]}>
       <ScrollView>
@@ -83,32 +84,22 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
           <Text style={{ color: 'red' }}>{errorMessages.rating}</Text>
         </View>
         <View>
-          {dataIn.textInputStyle?.nicknameStyle?.nicknameFieldIsShow ===
-          false ? (
-            <></>
-          ) : (
+          {(dataIn.nicknameStyle?.isShow ||
+            dataIn.nicknameStyle?.isShow === undefined) && (
             <CustomTextInput
-              inputLabel={
-                dataIn.textInputStyle?.nicknameStyle?.inputLabel || 'Nickname'
-              }
+              inputLabel={dataIn.nicknameStyle?.inputLabel || 'Nickname'}
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.nicknameStyle?.inputLabelStyle,
+                dataIn.nicknameStyle?.inputLabelStyle,
               ]}
-              inputStyle={[dataIn.textInputStyle?.nicknameStyle?.inputStyle]}
+              inputStyle={[dataIn.nicknameStyle?.inputStyle]}
               placeholder={
-                dataIn?.textInputStyle?.nicknameStyle?.placeholder ||
-                'Enter nickname'
+                dataIn?.nicknameStyle?.placeholder || 'Enter nickname'
               }
-              placeholderTextColor={
-                dataIn.textInputStyle?.nicknameStyle?.placeholderTextColor
-              }
-              multiline={
-                dataIn.textInputStyle?.nicknameStyle?.multiline || false
-              }
+              placeholderTextColor={dataIn.nicknameStyle?.placeholderTextColor}
+              multiline={dataIn.nicknameStyle?.multiline || false}
               textAlignVertical={
-                dataIn.textInputStyle?.nicknameStyle?.textAlignVertical ||
-                'center'
+                dataIn.nicknameStyle?.textAlignVertical || 'center'
               }
               value={inputData.nickName}
               onChangeText={(value: string) =>
@@ -117,33 +108,25 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
               error={errorMessages.nickName}
             />
           )}
-          {dataIn.textInputStyle?.reviewTitleStyle?.reviewTitleFieldIsShow ===
-          false ? (
-            <></>
-          ) : (
+          {(dataIn.reviewTitleStyle?.isShow ||
+            dataIn.reviewTitleStyle?.isShow === undefined) && (
             <CustomTextInput
-              inputLabel={
-                dataIn.textInputStyle?.reviewTitleStyle?.inputLabel ||
-                'Review Title'
-              }
+              inputLabel={dataIn.reviewTitleStyle?.inputLabel || 'Review Title'}
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.reviewTitleStyle?.inputLabelStyle,
+                dataIn.reviewTitleStyle?.inputLabelStyle,
               ]}
-              inputStyle={[dataIn.textInputStyle?.reviewTitleStyle?.inputStyle]}
+              inputStyle={[dataIn.reviewTitleStyle?.inputStyle]}
               placeholder={
-                dataIn?.textInputStyle?.reviewTitleStyle?.placeholder ||
+                dataIn?.reviewTitleStyle?.placeholder ||
                 'The summary line of your review'
               }
               placeholderTextColor={
-                dataIn.textInputStyle?.reviewTitleStyle?.placeholderTextColor
+                dataIn.reviewTitleStyle?.placeholderTextColor
               }
-              multiline={
-                dataIn.textInputStyle?.reviewTitleStyle?.multiline || false
-              }
+              multiline={dataIn.reviewTitleStyle?.multiline || false}
               textAlignVertical={
-                dataIn.textInputStyle?.reviewTitleStyle?.textAlignVertical ||
-                'center'
+                dataIn.reviewTitleStyle?.textAlignVertical || 'center'
               }
               value={inputData.reviewTitle}
               onChangeText={(value: string) =>
@@ -152,37 +135,31 @@ const WriteReviewScreen = ({ dataLoad, dataIn, dataOut }: Props) => {
               error={errorMessages.reviewTitle}
             />
           )}
-          {dataIn.textInputStyle?.reviewDescriptionStyle
-            ?.reviewDescriptionFieldIsShow === false ? (
-            <></>
-          ) : (
+          {(dataIn.reviewDescriptionStyle?.isShow ||
+            dataIn.reviewDescriptionStyle?.isShow === undefined) && (
             <CustomTextInput
               inputLabel={
-                dataIn.textInputStyle?.reviewDescriptionStyle?.inputLabel ||
+                dataIn.reviewDescriptionStyle?.inputLabel ||
                 'Review Description'
               }
               inputLabelStyle={[
                 styles.inputLabelStyle,
-                dataIn.textInputStyle?.reviewDescriptionStyle?.inputLabelStyle,
+                dataIn.reviewDescriptionStyle?.inputLabelStyle,
               ]}
               inputStyle={[
                 { height: 105 },
-                dataIn.textInputStyle?.reviewDescriptionStyle?.inputStyle,
+                dataIn.reviewDescriptionStyle?.inputStyle,
               ]}
               placeholder={
-                dataIn?.textInputStyle?.reviewDescriptionStyle?.placeholder ||
+                dataIn?.reviewDescriptionStyle?.placeholder ||
                 'Tip: Explain why you like or dislike the product and if it met your expectations.'
               }
               placeholderTextColor={
-                dataIn.textInputStyle?.reviewDescriptionStyle
-                  ?.placeholderTextColor
+                dataIn.reviewDescriptionStyle?.placeholderTextColor
               }
-              multiline={
-                dataIn.textInputStyle?.reviewDescriptionStyle?.multiline || true
-              }
+              multiline={dataIn.reviewDescriptionStyle?.multiline || true}
               textAlignVertical={
-                dataIn.textInputStyle?.reviewDescriptionStyle
-                  ?.textAlignVertical || 'top'
+                dataIn.reviewDescriptionStyle?.textAlignVertical || 'top'
               }
               value={inputData.reviewDescription}
               onChangeText={(value: string) =>

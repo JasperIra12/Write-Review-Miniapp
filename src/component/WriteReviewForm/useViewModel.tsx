@@ -25,36 +25,36 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
     rating: '',
   });
 
-  const dataToSave = () => {
-    let dataToSave = {};
+  const nickNameIsShow =
+    dataIn.nicknameStyle?.isShow === undefined
+      ? true
+      : dataIn.nicknameStyle?.isShow;
+  const reviewTitleIsShow =
+    dataIn.reviewTitleStyle?.isShow === undefined
+      ? true
+      : dataIn.reviewTitleStyle?.isShow;
+  const reviewDescIsShow =
+    dataIn.reviewDescriptionStyle?.isShow === undefined
+      ? true
+      : dataIn.reviewDescriptionStyle?.isShow;
 
-    if (dataIn?.textInputStyle?.nicknameStyle?.nicknameFieldIsShow === false) {
-      dataToSave = {
-        reviewTitle: inputData.reviewTitle,
-        reviewDescription: inputData.reviewDescription,
-        rating: inputData.rating,
-      };
-    } else if (
-      dataIn?.textInputStyle?.reviewTitleStyle?.reviewTitleFieldIsShow === false
-    ) {
-      dataToSave = {
-        nickName: inputData.nickName,
-        reviewDescription: inputData.reviewDescription,
-        rating: inputData.rating,
-      };
-    } else {
-      dataToSave = {
-        nickName: inputData.nickName,
-        reviewTitle: inputData.reviewTitle,
-        rating: inputData.rating,
-      };
+  const dataToSave = () => {
+    let dataToSave: any = {};
+    if (nickNameIsShow) {
+      dataToSave.nickName = inputData.nickName;
     }
+    if (reviewTitleIsShow) {
+      dataToSave.reviewTitle = inputData.reviewTitle;
+    }
+    if (reviewDescIsShow) {
+      dataToSave.reviewDescription = inputData.reviewDescription;
+    }
+    dataToSave.rating = inputData.rating;
     return dataToSave;
   };
 
   const validateInputData = (inputData: any) => {
     const errors = { ...errorMessages };
-
     if (inputData.rating === 0) {
       errors.rating =
         dataIn?.errorMessages?.ratingErrorMessage ||
@@ -62,7 +62,7 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
     }
 
     if (
-      dataIn.textInputStyle?.nicknameStyle?.nicknameFieldIsShow &&
+      nickNameIsShow &&
       (inputData.nickName.length === 0 || inputData.nickName.length > 8)
     ) {
       errors.nickName =
@@ -70,20 +70,13 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
         'Nickname must be between 1 and 8 characters long';
     }
 
-    if (
-      dataIn.textInputStyle?.reviewTitleStyle?.reviewTitleFieldIsShow &&
-      inputData.reviewTitle.length === 0
-    ) {
+    if (reviewTitleIsShow && inputData.reviewTitle.length === 0) {
       errors.reviewTitle =
         dataIn?.errorMessages?.reviewTitleFieldErrorMessage ||
         'Review title cannot be empty';
     }
 
-    if (
-      dataIn.textInputStyle?.reviewDescriptionStyle
-        ?.reviewDescriptionFieldIsShow &&
-      inputData.reviewDescription.length === 0
-    ) {
+    if (reviewDescIsShow && inputData.reviewDescription.length === 0) {
       errors.reviewDescription =
         dataIn?.errorMessages?.reviewDescriptionFieldErrorMessage ||
         'Review description cannot be empty';
@@ -139,6 +132,5 @@ export const useViewModel = ({ dataIn, dataLoad, dataOut }: Props) => {
     handleInputChange,
     inputData,
     errorMessages,
-    dataToSave,
   };
 };

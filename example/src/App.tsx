@@ -10,19 +10,7 @@ const App = () => {
   return (
     <>
       <WriteReviewMAPP
-        dataIn={{
-          textInputStyle: {
-            nicknameStyle: {},
-            reviewTitleStyle: {},
-            reviewDescriptionStyle: {},
-          },
-          errorMessages: {
-            reviewDescriptionFieldErrorMessage: 'TEST',
-          },
-          ratingStyle: {
-            // ratingTextValue: ['Terrible', 'Bad', 'Good', 'Excelent', 'Very Good'],
-          },
-        }}
+        dataIn={{}}
         dataLoad={data}
         dataOut={(value) => console.log(value)}
       />

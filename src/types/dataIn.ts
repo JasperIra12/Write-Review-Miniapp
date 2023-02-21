@@ -30,40 +30,40 @@ export type WriteReviewDataIn = {
         ratingTextValueColor?: string
         ratingTextValueSize?: number
     }
-    textInputStyle?: {
 
-        nicknameStyle?: {
-            inputStyle?: StyleProp<TextStyle>;
-            inputLabel?: string;
-            placeholder?: string;
-            inputLabelStyle?: StyleProp<TextStyle>;
-            nicknameFieldIsShow?: boolean;
-            placeholderTextColor?: string;
-            multiline?: boolean;
-            textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top';
-        }
 
-        reviewTitleStyle?: {
-            inputStyle?: StyleProp<TextStyle>;
-            inputLabel?: string;
-            placeholder?: string;
-            inputLabelStyle?: StyleProp<TextStyle>;
-            reviewTitleFieldIsShow?: boolean;
-            placeholderTextColor?: string;
-            multiline?: boolean;
-            textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top';
-        }
+    nicknameStyle?: {
+        inputStyle?: StyleProp<TextStyle>;
+        inputLabel?: string;
+        placeholder?: string;
+        inputLabelStyle?: StyleProp<TextStyle>;
+        isShow?: boolean;
+        placeholderTextColor?: string;
+        multiline?: boolean;
+        textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top';
+    }
 
-        reviewDescriptionStyle?: {
-            inputStyle?: StyleProp<TextStyle>;
-            inputLabel?: string;
-            placeholder?: string;
-            inputLabelStyle?: StyleProp<TextStyle>;
-            reviewDescriptionFieldIsShow?: boolean;
-            placeholderTextColor?: string;
-            multiline?: boolean;
-            textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top';
-        }
+    reviewTitleStyle?: {
+        inputStyle?: StyleProp<TextStyle>;
+        inputLabel?: string;
+        placeholder?: string;
+        inputLabelStyle?: StyleProp<TextStyle>;
+        isShow?: boolean;
+        placeholderTextColor?: string;
+        multiline?: boolean;
+        textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top';
+    }
+
+    reviewDescriptionStyle?: {
+        inputStyle?: StyleProp<TextStyle>;
+        inputLabel?: string;
+        placeholder?: string;
+        inputLabelStyle?: StyleProp<TextStyle>;
+        isShow?: boolean;
+        placeholderTextColor?: string;
+        multiline?: boolean;
+        textAlignVertical?: 'center' | 'auto' | 'bottom' | 'top';
+
 
 
     }
